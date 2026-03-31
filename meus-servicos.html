@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Meus Serviços</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+<div class="logo">📍 Pronto<span class="logo-verde">Aqui</span></div>
+
+<nav>
+<a href="index.html">🏠 Início</a>
+<a href="servicos.html">🔧 Serviços</a>
+<a href="profissionais.html">👷 Profissionais</a>
+<a href="como-funciona.html">❓ Como funciona</a>
+<a href="meus-servicos.html">📋 Meus serviços</a>
+</nav>
+</header>
+
+<section class="pagina">
+
+<h1>Meus serviços contratados</h1>
+
+<div class="lista-servicos" id="lista"></div>
+
+</section>
+
+<script>
+
+let lista = JSON.parse(localStorage.getItem("contratados")) || []
+
+let container = document.getElementById("lista")
+
+function render(){
+
+container.innerHTML = ""
+
+lista.forEach((p, index) => {
+
+let div = document.createElement("div")
+div.className = "servico-item"
+
+div.innerHTML = `
+<h3>${p.nome}</h3>
+<p>${p.profissao}</p>
+<p>⭐ ${p.avaliacao}</p>
+<button class="btn-cancelar" onclick="cancelar(${index})">Cancelar</button>
+`
+
+container.appendChild(div)
+
+})
+
+}
+
+function cancelar(i){
+lista.splice(i,1)
+localStorage.setItem("contratados", JSON.stringify(lista))
+render()
+}
+
+render()
+
+</script>
+
+</body>
+</html>

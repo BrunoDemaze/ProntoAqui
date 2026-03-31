@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Profissionais</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+📍 Pronto<span class="logo-verde">Aqui</span>
+</div>
+
+<nav>
+
+<a href="index.html">🏠 Início</a>
+<a href="servicos.html">🔧 Serviços</a>
+<a href="profissionais.html">👷 Profissionais</a>
+<a href="como-funciona.html">❓ Como funciona</a>
+<a href="meus-servicos.html">📋 Meus serviços</a>
+
+<a class="btn-menu-entrar" href="login.html">Entrar</a>
+<a class="btn-menu-cadastrar" href="cadastro.html">Cadastrar</a>
+
+</nav>
+
+</header>
+
+
+<section class="pagina">
+
+<h1>Profissionais disponíveis</h1>
+
+<div class="profissionais-grid">
+
+<!-- ELETRICISTA -->
+<div class="prof-card" onclick="abrirPerfil('João Silva',34,'Eletricista','https://randomuser.me/api/portraits/men/45.jpg','4.9')">
+<img src="https://randomuser.me/api/portraits/men/45.jpg">
+<h3>João Silva</h3>
+<p>Eletricista</p>
+<p>⭐ 4.9</p>
+</div>
+
+<!-- PEDREIRO -->
+<div class="prof-card" onclick="abrirPerfil('Carlos Mendes',41,'Pedreiro','https://randomuser.me/api/portraits/men/32.jpg','4.8')">
+<img src="https://randomuser.me/api/portraits/men/32.jpg">
+<h3>Carlos Mendes</h3>
+<p>Pedreiro</p>
+<p>⭐ 4.8</p>
+</div>
+
+<!-- DIARISTA -->
+<div class="prof-card" onclick="abrirPerfil('Ana Souza',29,'Diarista','https://randomuser.me/api/portraits/women/65.jpg','4.7')">
+<img src="https://randomuser.me/api/portraits/women/65.jpg">
+<h3>Ana Souza</h3>
+<p>Diarista</p>
+<p>⭐ 4.7</p>
+</div>
+
+<!-- ENCANADOR -->
+<div class="prof-card" onclick="abrirPerfil('Lucas Oliveira',37,'Encanador','https://randomuser.me/api/portraits/men/12.jpg','4.8')">
+<img src="https://randomuser.me/api/portraits/men/12.jpg">
+<h3>Lucas Oliveira</h3>
+<p>Encanador</p>
+<p>⭐ 4.8</p>
+</div>
+
+<!-- JARDINEIRO -->
+<div class="prof-card" onclick="abrirPerfil('Fernando Gomes',39,'Jardineiro','https://randomuser.me/api/portraits/men/60.jpg','4.9')">
+<img src="https://randomuser.me/api/portraits/men/60.jpg">
+<h3>Fernando Gomes</h3>
+<p>Jardineiro</p>
+<p>⭐ 4.9</p>
+</div>
+
+<!-- PINTOR -->
+<div class="prof-card" onclick="abrirPerfil('Rafael Costa',45,'Pintor','https://randomuser.me/api/portraits/men/77.jpg','4.6')">
+<img src="https://randomuser.me/api/portraits/men/77.jpg">
+<h3>Rafael Costa</h3>
+<p>Pintor</p>
+<p>⭐ 4.6</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MODAL PERFIL -->
+
+<div id="perfil" class="perfil">
+
+<div class="perfil-box">
+
+<div class="fechar" onclick="fecharPerfil()">✖</div>
+
+<img id="foto">
+
+<h2 id="nome"></h2>
+
+<p id="profissao"></p>
+
+<p id="avaliacao"></p>
+
+<button class="btn-amarelo" onclick="contratar()">Contratar</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+let selecionado = {}
+
+function abrirPerfil(nome, idade, profissao, foto, avaliacao){
+
+document.getElementById("perfil").style.display="flex"
+
+document.getElementById("nome").innerText = nome + " - " + idade + " anos"
+document.getElementById("profissao").innerText = profissao
+document.getElementById("avaliacao").innerText = "⭐ " + avaliacao
+document.getElementById("foto").src = foto
+
+selecionado = {nome, profissao, avaliacao}
+
+}
+
+function fecharPerfil(){
+document.getElementById("perfil").style.display="none"
+}
+
+function contratar(){
+
+let lista = JSON.parse(localStorage.getItem("contratados")) || []
+
+lista.push(selecionado)
+
+localStorage.setItem("contratados", JSON.stringify(lista))
+
+alert("Serviço contratado!")
+
+fecharPerfil()
+
+}
+
+</script>
+
+</body>
+</html>
