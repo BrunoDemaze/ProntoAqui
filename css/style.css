@@ -285,3 +285,76 @@ border-radius:6px;
 cursor:pointer;
 margin-top:10px;
 }
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+
+header {
+flex-direction: column;
+padding: 20px;
+}
+
+nav {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 10px;
+margin-top: 10px;
+}
+
+nav a {
+margin: 0;
+font-size: 14px;
+padding: 8px 12px;
+background: rgba(255,255,255,0.2);
+border-radius: 8px;
+}
+
+/* HERO */
+.hero {
+padding: 60px 20px;
+}
+
+.logo-centro {
+font-size: 40px;
+}
+
+/* INFO */
+.info {
+padding: 30px 20px;
+}
+
+/* SERVIÇOS */
+.servicos-grid {
+grid-template-columns: 1fr 1fr;
+padding: 30px;
+}
+
+/* PROFISSIONAIS */
+.profissionais-grid {
+grid-template-columns: 1fr 1fr;
+padding: 30px;
+}
+
+/* CARDS */
+.card,
+.servico-card,
+.prof-card {
+padding: 20px;
+}
+
+/* PERFIL */
+.perfil-box {
+width: 90%;
+}
+
+/* BOTÕES */
+button {
+width: 100%;
+}
+}
+
+body {
+max-width: 480px;
+margin: auto;
+}
