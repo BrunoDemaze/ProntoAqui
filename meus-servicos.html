@@ -1,68 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Meus Serviços</title>
+
 <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
-<header>
-<div class="logo">📍 Pronto<span class="logo-verde">Aqui</span></div>
+<!-- BOTÃO VOLTAR -->
+<div class="btn-voltar" onclick="history.back()">
+← Voltar
+</div>
 
-<nav>
-<a href="index.html">🏠 Início</a>
-<a href="servicos.html">🔧 Serviços</a>
-<a href="profissionais.html">👷 Profissionais</a>
-<a href="como-funciona.html">❓ Como funciona</a>
-<a href="meus-servicos.html">📋 Meus serviços</a>
-</nav>
-</header>
+<section class="pagina-servicos">
 
-<section class="pagina">
+<h1>Meus serviços</h1>
 
-<h1>Meus serviços contratados</h1>
+<p class="subtitulo">
+Acompanhe os serviços que você contratou
+</p>
 
-<div class="lista-servicos" id="lista"></div>
+<div id="lista-servicos" class="lista-servicos"></div>
 
 </section>
 
 <script>
 
-let lista = JSON.parse(localStorage.getItem("contratados")) || []
+let lista = JSON.parse(localStorage.getItem("servicos")) || []
 
-let container = document.getElementById("lista")
+const container = document.getElementById("lista-servicos")
 
-function render(){
+function renderizar(){
 
 container.innerHTML = ""
 
-lista.forEach((p, index) => {
+if(lista.length === 0){
+container.innerHTML = "<p>Nenhum serviço contratado ainda</p>"
+return
+}
 
-let div = document.createElement("div")
-div.className = "servico-item"
+lista.forEach((servico, index) => {
 
-div.innerHTML = `
-<h3>${p.nome}</h3>
-<p>${p.profissao}</p>
-<p>⭐ ${p.avaliacao}</p>
-<button class="btn-cancelar" onclick="cancelar(${index})">Cancelar</button>
+container.innerHTML += `
+<div class="servico-item">
+<h3>${servico.nome}</h3>
+<p>Profissional: ${servico.profissional}</p>
+<p>⭐ ${servico.avaliacao}</p>
+
+<button onclick="cancelar(${index})" class="btn-cancelar">
+Cancelar serviço
+</button>
+</div>
 `
-
-container.appendChild(div)
 
 })
 
 }
 
-function cancelar(i){
-lista.splice(i,1)
-localStorage.setItem("contratados", JSON.stringify(lista))
-render()
+function cancelar(index){
+lista.splice(index, 1)
+localStorage.setItem("servicos", JSON.stringify(lista))
+renderizar()
 }
 
-render()
+renderizar()
 
 </script>
 
